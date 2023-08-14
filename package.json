@@ -1,35 +1,56 @@
 {
-  "name": "react-solitude",
-  "version": "0.0.9",
+  "name": "rct-solitude",
+  "version": "0.0.1",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/my-lib.umd.js",
-  "module": "./dist/my-lib.es.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/solitude.umd.js",
+  "module": "dist/solitude.es.js",
   "exports": {
     ".": {
-      "import": "./dist/my-lib.es.js",
-      "require": "./dist/my-lib.umd.js"
+      "import": "./dist/solitude.es.js",
+      "require": "./dist/solitude.umd.js"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
+  },
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "vite build",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx,json}'",
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "vite build && storybook build",
+    "test": "vite test"
   },
   "peerDependencies": {
     "react": "18.2.0"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^7.1.1",
+    "@storybook/addon-essentials": "^7.1.1",
+    "@storybook/addon-interactions": "^7.1.1",
+    "@storybook/addon-links": "^7.1.1",
+    "@storybook/addons": "^7.1.1",
+    "@storybook/node-logger": "^7.1.1",
+    "@storybook/react": "^7.1.1",
+    "@storybook/react-vite": "7.1.1",
+    "@storybook/testing-library": "^0.2.0",
+    "@storybook/theming": "^7.1.1",
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.32",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
+    "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "^1.59.3",
+    "storybook": "7.1.1",
     "tslib": "^2.5.0",
     "typescript": "4.8.4",
     "vite": "^4.2.1",
     "vite-plugin-dts": "^2.1.0"
-  },
-  "scripts": {
-    "build": "vite build"
   }
 }

@@ -3,12 +3,14 @@ import styles from "./Slider.module.scss";
 import arrowRight from "@/assets/right.svg";
 import arrowLeft from "@/assets/left.svg";
 
-interface SliderProps {
-  slides: {
-    image: string;
-    label: string;
-    paragraph: string;
-  }[];
+export interface Slide {
+  image: string;
+  label: string;
+  paragraph: string;
+}
+
+export interface SliderProps {
+  slides: Slide[];
 }
 
 export const Slider: React.FC<SliderProps> = ({ slides }) => {
