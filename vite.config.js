@@ -1,5 +1,5 @@
 import react from "@vitejs/plugin-react";
-import path from "path";
+import path from "node:path";
 import url from "url";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
@@ -17,9 +17,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "MyLib",
+      name: "solitude",
       formats: ["es", "cjs", "umd"],
-      fileName: (format) => `my-lib.${format}.js`,
+      fileName: (format) => `solitude.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom"],
