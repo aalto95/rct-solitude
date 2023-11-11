@@ -8,16 +8,21 @@ export default {
   args: {
     slides: [
       {
-        label: "Label 1",
-        paragraph: "Paragraph 1",
+        label: "Himeno",
+        paragraph: "is best girl",
         image:
           "https://wegotthiscovered.com/wp-content/uploads/2022/11/himeno.jpg",
       },
       {
-        label: "Label 2",
-        paragraph: "Paragraph 2",
+        label: "It gets lonely",
+        paragraph: "at the top",
         image:
-          "https://api.duniagames.co.id/api/content/upload/file/6563548601677501657.jpg",
+          "https://mountainhouse.com/cdn/shop/articles/denali-national-park-in-alaska-feature-image-min_1024x.jpg?v=1624973320",
+      },
+      {
+        label: "All I know is grind",
+        image:
+          "https://medialeaks.ru/wp-content/uploads/2023/01/sajt-dasha-4.jpg",
       },
     ],
   },

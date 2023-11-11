@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Slider.module.scss";
-import arrowRight from "@/assets/right.svg";
-import arrowLeft from "@/assets/left.svg";
+import "./Slider.scss";
+import arrowLeft from "@/assets/icons/arrow-left.svg";
+import arrowRight from "@/assets/icons/arrow-right.svg";
 
 export interface Slide {
-  image: string;
   label: string;
   paragraph: string;
+  image: string;
 }
 
 export interface SliderProps {
@@ -15,12 +15,10 @@ export interface SliderProps {
 
 export const Slider: React.FC<SliderProps> = ({ slides }) => {
   const [currentSlideId, setCurrentSlideId] = useState<number>(0);
-  const [slideDirection, setSlideDirection] = useState<string>("");
   const [downX, setDownX] = useState(1);
   const [upX, setUpX] = useState(1);
 
   const slideLeft = () => {
-    setSlideDirection("left");
     if (currentSlideId > 0) {
       setCurrentSlideId((prev) => prev - 1);
     } else {
@@ -29,7 +27,6 @@ export const Slider: React.FC<SliderProps> = ({ slides }) => {
   };
 
   const slideRight = () => {
-    setSlideDirection("right");
     if (currentSlideId < slides.length - 1) {
       setCurrentSlideId((prev) => prev + 1);
     } else {
@@ -63,46 +60,46 @@ export const Slider: React.FC<SliderProps> = ({ slides }) => {
 
   return (
     <div
-      className={styles.container}
+      className="slider"
       onMouseDown={(e) => listenToMouseDown(e)}
       onMouseUp={(e) => listenToMouseUp(e)}
       onTouchStart={(e) => listenToTouchStart(e)}
       onTouchEnd={(e) => listenToTouchEnd(e)}
     >
-      <div className={styles.slider}>
-        {slides.map((slide, idx) => (
+      <div
+        className="slider__slide-container"
+        style={{ transform: `translateX(calc(-100% * ${currentSlideId}))` }}
+      >
+        {slides.map((slide) => (
           <div
             key={slide.image}
             style={{ backgroundImage: `url(${slide.image})` }}
-            className={`${styles.slide} ${
-              currentSlideId === idx
-                ? ""
-                : slideDirection === "right"
-                ? styles.hideToLeft
-                : styles.hideToRight
-            }`}
+            className="slider__slide"
           >
             <h1>{slide.label}</h1>
             <p>{slide.paragraph}</p>
           </div>
         ))}
-        <button className={styles.slideButton} onClick={slideLeft}>
-          <img src={arrowLeft} alt="left" className={styles.arrow} />
-        </button>
-        <div className={styles.middleSection} id="slider">
-          {slides.map((slide, id) => (
-            <div
-              key={id}
-              className={`${styles.circle} ${
-                id === currentSlideId ? styles.current : ""
-              }`}
-            ></div>
-          ))}
-        </div>
-        <button className={styles.slideButton} onClick={slideRight}>
-          <img src={arrowRight} alt="right" className={styles.arrow} />
-        </button>
       </div>
+
+      <div className="slider__dot-navigation">
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`slider__dot ${
+              index === currentSlideId ? "slider__dot--active" : ""
+            }`}
+            onClick={() => setCurrentSlideId(index)}
+          ></div>
+        ))}
+      </div>
+
+      <button className="slider__btn slider__btn--left" onClick={slideLeft}>
+        <img src={arrowLeft} alt="left" />
+      </button>
+      <button className="slider__btn slider__btn--right" onClick={slideRight}>
+        <img src={arrowRight} alt="right" />
+      </button>
     </div>
   );
 };
